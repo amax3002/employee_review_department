@@ -65,12 +65,18 @@ class Department < ActiveRecord::Base
     above_averages.join(", ")
   end
 
-  def most_employees
-    employees_in_department = Employee.where(department_id: self.id).to_a
-    hash = Hash.new(0)
-    employees_in_department.each do |c|
-      hash[c.department_id] += 1 unless c == " "
-    end
-
+  def department_size
+    Employee.where(department_id: self.id).size
   end
+
+  def self.most_employees
+    a = Department.all.max_by { |dept| dept.department_size }
+    a.name
+  end
+
+  # def self.move_all_employees
+  #   a = Department.all.max_by { |dept| dept.department_size }
+  #   a.name
+  # end
+
 end

@@ -188,7 +188,7 @@ class EmployeeReviews < Minitest::Test
     a.add_employee(xavier)
     b.add_employee(new_employee)
     b.add_employee(old_employee)
-    assert_equal most_employees, "IT"
+    assert_equal Department.most_employees, "IT"
   end
 
 
